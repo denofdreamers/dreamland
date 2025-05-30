@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dreamscape Portal Room</title>
+  <style>
+    /* ---- Container & Background ---- */
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      font-family: sans-serif;
+      background: #ccc; /* fallback */
+    }
+    .portal-room {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+  
+    }
+    .portal-room .background {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+
+    /* ---- Shared Portal Style ---- */
+    .portal {
+      position: absolute;
+      cursor: pointer;
+      transition: transform 0.3s ease, filter 0.3s ease;
+      z-index: 1;
+    }
+    .portal:hover {
+      transform: scale(1.1);
+      filter: drop-shadow(0 0 15px rgba(255,255,255,0.7));
+    }
+
+    /* ---- Positioning Your Objects ----
+         Adjust top/left/width to suit your design */
+    .portal-door {
+      top: 20%;
+      left: 60%;
+      width: 180px;
+    }
+    .portal-journal {
+      top: 61%;
+      left: 75%;
+      width: 322px;
+    }
+    .portal-cabinet {
+      top: 25%;
+      left: 0%;
+      width: 805px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="portal-room">
+    <!-- Background image of your dreamy bedroom -->
+    <img src="https://raw.githubusercontent.com/denofdreamers/dreamland/refs/heads/main/fairyworld.png" class="background" alt="Dreamy Bedroom Background">
+
+    <!-- Layered interactive objects -->
+    <img src="https://raw.githubusercontent.com/denofdreamers/dreamland/main/Untitled%20design%20(11).png"      class="portal portal-door"    alt="Portal Door">
+    <img src="https://raw.githubusercontent.com/denofdreamers/dreamland/refs/heads/main/Untitled%20design%20(2).gif"   class="portal portal-journal" alt="Dream Journal">
+    <img src="https://raw.githubusercontent.com/denofdreamers/dreamland/refs/heads/main/Untitled%20design%20(3).gif"   class="portal portal-cabinet" alt="Apothecary Cabinet">
+  </div>
+
+  <script>
+    // Utility: play a sound
+    function playChime(src) {
+      const audio = new Audio(src);
+      audio.volume = 0.5;
+      audio.play();
+    }
+
+    // Door click → enter portal
+ document.querySelector('.portal-door')
+  .addEventListener('mouseenter', () => {
+    playChime('https://raw.githubusercontent.com/denofdreamers/dreamland/main/FairyChime.mp3');
+  });
+
+document.querySelector('.portal-door')
+  .addEventListener('click', () => {
+    window.location.href = 'portal-page.html';
+  });
+
+    // Journal click → open writing area
+    document.querySelector('.portal-journal')
+      .addEventListener('click', () => {
+        playChime('chime-journal.mp3');
+        // e.g. open a modal or navigate
+        // document.querySelector('#journalModal').classList.add('open');
+        alert('Open your dream journal here!');
+      });
+
+    // Cabinet click → show artifacts
+    document.querySelector('.portal-cabinet')
+      .addEventListener('click', () => {
+        playChime('chime-cabinet.mp3');
+        // e.g. toggle your artifact sidebar
+        // document.querySelector('#artifactCabinet').classList.toggle('visible');
+        alert('Reveal your collected artifacts!');
+      });
+  </script>
+
+</body>
+</html>
